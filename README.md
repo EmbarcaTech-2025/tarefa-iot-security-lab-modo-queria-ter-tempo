@@ -2,7 +2,9 @@
 
 # Tarefa: IoT Security Lab - EmbarcaTech 2025
 
-Autor: **Insira Seu Nome**
+Autor:  **Adriana Rocha**
+        **Arthur Franco Neto**
+        **Carlos Martinez Perez**
 
 Curso: Residência Tecnológica em Sistemas Embarcados
 
