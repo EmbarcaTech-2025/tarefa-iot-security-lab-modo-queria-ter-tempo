@@ -2,9 +2,10 @@
 
 # Tarefa: IoT Security Lab - EmbarcaTech 2025
 
-Autor:  **Adriana Rocha**  
-        **Arthur Franco Neto**  
-        **Carlos Martinez Perez**  
+Autores:
+- **Adriana Rocha**  
+- **Arthur Franco Neto**  
+- **Carlos Martinez Perez**  
 
 Curso: Residência Tecnológica em Sistemas Embarcados
 
