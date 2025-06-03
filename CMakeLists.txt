@@ -1,5 +1,4 @@
 # Generated Cmake Pico project file
-
 cmake_minimum_required(VERSION 3.13)
 
 set(CMAKE_C_STANDARD 11)
@@ -28,51 +27,48 @@ set(PICO_BOARD pico_w CACHE STRING "Board type")
 # Pull in Raspberry Pi Pico SDK (must be before project)
 include(pico_sdk_import.cmake)
 
-project(iot_security_lab C CXX ASM)
+project(SecurePicoMQTT C CXX ASM)
 
 # Initialise the Raspberry Pi Pico SDK
 pico_sdk_init()
 
 # Add executable. Default name is the project name, version 0.1
-
-add_executable(iot_security_lab iot_security_lab.c 
-    src/mqtt_comm.c
-    src/wifi_conn.c
-    src/xor_cipher.c
+add_executable(SecurePicoMQTT 
+        main.c 
+        src/display_oled.c
+        src/wifi_conn.c 
+        src/mqtt_comm.c 
+        src/xor_cipher.c
+        src/tratar_gpio.c
+        src/mqtt_publisher.c
+        src/mqtt_subscriber.c
+        oled/ssd1306_i2c.c
 )
 
-pico_set_program_name(iot_security_lab "iot_security_lab")
-pico_set_program_version(iot_security_lab "0.1")
+pico_set_program_name(SecurePicoMQTT "SecurePicoMQTT")
+pico_set_program_version(SecurePicoMQTT "0.1")
 
 # Modify the below lines to enable/disable output over UART/USB
-pico_enable_stdio_uart(iot_security_lab 0)
-pico_enable_stdio_usb(iot_security_lab 1)
+pico_enable_stdio_uart(SecurePicoMQTT 0)
+pico_enable_stdio_usb(SecurePicoMQTT 1)
 
 # Add the standard library to the build
-target_link_libraries(iot_security_lab
-        # Biblioteca padrão do Pico SDK, que fornece funções básicas para o RP2040 (GPIO, temporizadores, UART, etc.).
-        pico_stdlib
-        # Oferece suporte Wi-Fi (CYW43) com LwIP (pilha TCP/IP) em um modo thread-safe em segundo plano.
-        pico_cyw43_arch_lwip_threadsafe_background
-        # Adiciona suporte a cliente MQTT sobre o LwIP.
-        pico_lwip_mqtt
-        # A pilha Lightweight IP (LwIP), que fornece funcionalidades TCP/IP (HTTP, MQTT, UDP, DHCP, etc.).
-        pico_lwip
-        # O driver do chip Wi-Fi CYW43 (usado no Pico W).
-        pico_cyw43_driver
-        # pico_time
-        # pico_unique_id
-        )
+target_link_libraries(SecurePicoMQTT
+        pico_stdlib)
 
 # Add the standard include files to the build
-target_include_directories(iot_security_lab PRIVATE
+target_include_directories(SecurePicoMQTT PRIVATE
         ${CMAKE_CURRENT_LIST_DIR}
 )
 
 # Add any user requested libraries
-target_link_libraries(iot_security_lab 
-        
-        )
+target_link_libraries(SecurePicoMQTT 
+        pico_cyw43_arch_lwip_threadsafe_background
+        pico_lwip_mqtt
+        pico_lwip
+        pico_cyw43_driver
+        hardware_i2c
+)
 
-pico_add_extra_outputs(iot_security_lab)
+pico_add_extra_outputs(SecurePicoMQTT)
 
