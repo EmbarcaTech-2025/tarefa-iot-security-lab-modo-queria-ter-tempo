@@ -196,7 +196,7 @@ void connect_to_wifi(const char *ssid, const char *password);
 - **Implementação**:
   - Arquivos adicionados: `main.c`, `mqtt_comm.c`, `mqtt_comm.h`, `lwipopts.h` modificado.
   - Configuração do broker com autenticação (usuário: `aluno`, senha: `senha123`).
-  - Solução de problema: Firewall do Windows bloqueava pacotes MQTT na porta 1883. Solucionado com a execução do Wireshark com filtro `tcp.port == 1883, após inicializar o broker mosquitt, impedindo que o Windoes bloqueie pacotes silenciosamente. O Wireshark, ao ativar o modo promíscuo, força a rede a escutar pacotes externos, o que acaba desbloqueando a comunicação com a Pico W.
+  - Solução de problema: Firewall do Windows bloqueava pacotes MQTT na porta 1883. Solucionado com a execução do Wireshark com filtro `tcp.port == 1883, após inicializar o broker mosquitto, impedindo que o Windows bloqueie pacotes silenciosamente. O Wireshark, ao ativar o modo promíscuo, força a rede a escutar pacotes externos, o que acaba desbloqueando a comunicação com a Pico W.
 
 #### Código
 
