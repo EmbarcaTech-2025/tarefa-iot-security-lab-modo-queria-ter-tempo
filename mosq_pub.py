@@ -17,7 +17,7 @@ ultima_msg = ""
 
 for i in range(5):
     if i == 4 and ultima_msg:
-        mensagem_clara = ultima_msg
+        mensagem_clara = ultima_msg.strip()
         print(f"[{i+1}/5] Reenviando mensagem: {mensagem_clara}")
     else:
         temperatura = round(25.0 + random.randint(0, 50) / 10.0, 1)  # T=%.1f
@@ -26,17 +26,19 @@ for i in range(5):
         ultima_msg = mensagem_clara
         print(f"[{i+1}/5] Nova mensagem clara: {mensagem_clara}")
 
-    # XOR + conversão para hex string (como seu xor_encrypt_to_hex em C)
+    # XOR + conversão para hex string
     criptografada_bytes = bytes([ord(c) ^ XOR_KEY for c in mensagem_clara])
     mensagem_hexstr = criptografada_bytes.hex()
+    assert len(mensagem_hexstr) % 2 == 0, f"Erro: hex resultante tem tamanho ímpar: {mensagem_hexstr}"
     print(f"[{i+1}/5] Enviando criptografada (hex): {mensagem_hexstr}")
 
+    # ✅ MOVA PARA DENTRO DO LOOP!
     comando = [
         "mosquitto_pub",
         "-h", "192.168.15.101",         # Altere se o broker tiver outro IP
         "-t", topicos[i],
         "-m", mensagem_hexstr,
-        "-u", "aluno",               # Altere conforme suas credenciais
+        "-u", "aluno",
         "-P", "senha123"
     ]
 
